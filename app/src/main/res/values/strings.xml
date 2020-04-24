@@ -15,7 +15,26 @@
     <string name="email">Email</string>
     <string name="password">Hasło</string>
     <string name="createAccountLabel">Stwórz konto!</string>
+    <string name="register">Zarejestruj się</string>
+    <string name="username">Nazwa użytkownika</string>
+    <string name="confirmPassword">Potwierdź hasło</string>
+    <string name="loginToAccountLabel">Zaloguj się na konto!</string>
 
     <!--Buttons Labels-->
     <string name="loginButtonText">ZALOGUJ SIĘ</string>
+    <string name="registerButtonText">ZAREJESTRUJ SIĘ</string>
+
+    <!--Toast Messages-->
+    <string name="connectionTimeout">Czas połączenia był zbyt długi.</string>
+    <string name="passwordsDontMatch">Podane hasła nie są takie same!</string>
+    <string name="emptyDataProvided">Nie wprowadzono wszystkich wymaganych danych.</string>
+    <string name="registerDataIncorrect">Nieprawidłowe dane. Spróbuj ponownie.</string>
+    <string name="usernameOrEmailTaken">Podana nazwa użytkownika jest już zajęta. Spróbuj użyć innej.</string>
+    <string name="userIdConfirmText">Proszę zapamiętaj swoje id:</string>
+    <string name="loginDataIncorrect">Niepoprawne dane logowania.Spróbuj ponownie.</string>
+
+    <!--URLs-->
+    <string name="loginUrl">http://192.168.8.100:8080/login</string>
+    <string name="registerUrl">http://192.168.8.100:8080/register</string>
+
 </resources>

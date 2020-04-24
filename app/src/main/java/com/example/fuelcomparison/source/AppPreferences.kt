@@ -23,6 +23,25 @@ class AppPreferences private constructor(context: Context) {
         commit()
     }
 
+    fun put(
+        key: Key,
+        `val`: String?
+    ) {
+        edit()
+        editor!!.putString(key.name, `val`)
+        commit()
+    }
+
+
+    fun put(
+        key: Key,
+        `val`: Long
+    ) {
+        edit()
+        editor!!.putLong(key.name, `val`)
+        commit()
+    }
+
     private fun edit() {
         if (editor == null) {
             editor = sharedPreferences.edit()
@@ -43,6 +62,7 @@ class AppPreferences private constructor(context: Context) {
     companion object {
         const val SETTINGS_NAME = "app_settings"
         private var appPreferences: AppPreferences? = null
+
         @JvmStatic
         fun getInstance(context: Context): AppPreferences? {
             if (appPreferences == null) {

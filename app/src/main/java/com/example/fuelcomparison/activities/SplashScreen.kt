@@ -16,7 +16,7 @@ class SplashScreen : AppCompatActivity() {
     }
 
     private val isUserLoggedIn: Boolean
-        private get() = UserDataHolder.getUserData(this).token != null
+        get() = UserDataHolder.getUserData(this).token != null
 
     private fun launchMainActivity() {
         startActivityClear(MainActivity::class.java)

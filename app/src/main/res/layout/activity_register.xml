@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".activities.LoginActivity">
+    tools:context=".activities.RegisterActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -18,7 +18,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/registerLabel"
+        android:layout_above="@+id/loginLabel"
         android:layout_marginBottom="10dp"
         android:fillViewport="true">
 
@@ -31,11 +31,11 @@
 
             <TextView
                 android:id="@+id/activityInfo"
-                style="18sp"
+                style="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:text="@string/login" />
+                android:text="@string/register" />
 
             <EditText
                 android:id="@+id/emailArea"
@@ -49,34 +49,56 @@
                 tools:ignore="TextFields" />
 
             <EditText
+                android:id="@+id/usernameArea"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:focusable="true"
+                android:hint="@string/username"
+                android:inputType="textEmailAddress"
+                tools:ignore="TextFields" />
+
+            <EditText
                 android:id="@+id/passwordArea"
                 style="@style/EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:focusable="true"
                 android:hint="@string/password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/confirmPasswordArea"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:focusable="true"
+                android:hint="@string/confirmPassword"
                 android:inputType="textPassword" />
 
         </LinearLayout>
     </ScrollView>
 
     <TextView
-        android:id="@+id/registerLabel"
+        android:id="@+id/loginLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/registerButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:onClick="handleRegisterLabelClick"
-        android:text="@string/createAccountLabel" />
+        android:onClick="handleLoginLabelClick"
+        android:text="@string/loginToAccountLabel" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/registerButton"
         style="@style/ButtonAccent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:onClick="handleLoginButtonClick"
-        android:text="@string/loginButtonText" />
-
+        android:onClick="handleRegisterButtonClick"
+        android:text="@string/registerButtonText" />
 
 </RelativeLayout>
