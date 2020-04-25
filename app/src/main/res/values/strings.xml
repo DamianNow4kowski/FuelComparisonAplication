@@ -32,9 +32,18 @@
     <string name="usernameOrEmailTaken">Podana nazwa użytkownika jest już zajęta. Spróbuj użyć innej.</string>
     <string name="userIdConfirmText">Proszę zapamiętaj swoje id:</string>
     <string name="loginDataIncorrect">Niepoprawne dane logowania.Spróbuj ponownie.</string>
+    <string name="succesfulkRegistration">Twoje konto zostało utworzone.</string>
+
+    <!--Navigation Menu-->
+    <string name="navigation_drawer_open">Otwieranie nawigacji</string>
+    <string name="navigation_drawer_close">Zamykanie nawigacji</string>
+    <string name="logout">Wyloguj się</string>
 
     <!--URLs-->
-    <string name="loginUrl">http://192.168.8.100:8080/login</string>
-    <string name="registerUrl">http://192.168.8.100:8080/register</string>
+    <string name="loginUrl">http://10.0.2.2:8000/login</string>
+    <string name="registerUrl">http://10.0.2.2:8000/register</string>
+
+    <!--Tags-->
+    <string name="mapFragmentTag">MAP_FRAGMENT</string>
 
 </resources>

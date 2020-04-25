@@ -8,7 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.fuelcomparison.R
 
 open class BaseActivity : AppCompatActivity() {
-    private var toolbar: Toolbar? = null
+    protected var toolbar: Toolbar? = null
     private var toolbarTitle: TextView? = null
 
     fun setupToolbar(toolbarId: Int, title: String?) {

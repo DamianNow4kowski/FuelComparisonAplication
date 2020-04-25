@@ -12,4 +12,5 @@ class UserData {
 
     @JvmField
     var token: String? = null
+
 }

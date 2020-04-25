@@ -22,7 +22,7 @@ class AsyncConnectionTask internal constructor(
     override fun doInBackground(vararg params: Request?): Response {
         return try {
             val connection = initConnection(params[0]?.address)
-            sendData(connection, params[0]?.params)
+            sendData(connection, params[0]!!.params)
             receiveData(connection)
         } catch (e: IOException) {
             e.printStackTrace()
@@ -57,7 +57,8 @@ class AsyncConnectionTask internal constructor(
     @Throws(IOException::class)
     private fun sendData(
         connection: URLConnection,
-        postRequest: String?
+        postRequest: String
+
     ) {
         val writer =
             BufferedWriter(OutputStreamWriter(connection.getOutputStream()))

@@ -6,5 +6,10 @@
         <item
             android:title="Title1"
             app:actionViewClass="android.widget.TextView" />
+        <item
+            android:id="@+id/navLogout"
+            android:icon="@drawable/ic_logout_24dp"
+            android:title="@string/logout"
+            app:actionViewClass="android.widget.TextView" />
     </group>
 </menu>

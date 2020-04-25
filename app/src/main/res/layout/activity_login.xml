@@ -46,16 +46,19 @@
                 android:focusable="true"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
-                tools:ignore="TextFields" />
+                tools:ignore="TextFields"
+                android:autofillHints="Email" />
 
             <EditText
                 android:id="@+id/passwordArea"
                 style="@style/EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:focusable="true"
                 android:hint="@string/password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:autofillHints="Hasło" />
 
         </LinearLayout>
     </ScrollView>
@@ -64,6 +67,7 @@
         android:id="@+id/registerLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/loginButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:onClick="handleRegisterLabelClick"

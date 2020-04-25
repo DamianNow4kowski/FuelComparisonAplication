@@ -21,19 +21,18 @@ class LoginActivityController(
         requestBuilder.putParameter("email", userLogin)
         requestBuilder.putParameter("password", userPassword)
         val loginTask =
-            taskFactory!!.create(this, AsyncConnectionTask.RequestType.LOGIN)
+            taskFactory.create(this, AsyncConnectionTask.RequestType.LOGIN)
         loginTask.execute(requestBuilder.build())
     }
-
 
     override fun processConnectionTimeout() {
         showToast(activity, activity.getString(R.string.connectionTimeout))
         activity.hideProgressIndicator()
     }
 
-    override fun processRequestResponse(response: Response) {
+    override fun processRequestResponse(response: Response?) {
         activity.hideProgressIndicator()
-        if (response.requestType == AsyncConnectionTask.RequestType.LOGIN) handleLoginResponse(
+        if (response!!.requestType == AsyncConnectionTask.RequestType.LOGIN) handleLoginResponse(
             response.responseContent
         )
     }
@@ -45,7 +44,7 @@ class LoginActivityController(
             if (status == ResponseStatus.General.SUCCESS) {
                 handleSuccessfulLogin(jsonResponse.getJSONObject(ResponseStatus.Key.CONTENT))
             } else {
-                handleUnsuccessfulLogin(jsonResponse.getInt(ResponseStatus.Key.ERROR_CODE))
+                handleUnsuccessfulLogin(jsonResponse.getString(ResponseStatus.Key.REASON))
             }
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -62,8 +61,8 @@ class LoginActivityController(
         activity.launchMainActivity()
     }
 
-    private fun handleUnsuccessfulLogin(errorCode: Int) {
-        when (errorCode) {
+    private fun handleUnsuccessfulLogin(errorReason: String) {
+        when (errorReason) {
             ResponseStatus.Login.NULL_OR_EMPTY_INPUT -> showToast(
                 activity,
                 activity.getString(R.string.emptyDataProvided)
