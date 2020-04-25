@@ -33,7 +33,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         initializeDrawerLayout()
         initializeNavigationView()
         displayBasicUserDataInNavView()
-//        setMapFragment()
+        setMapFragment()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

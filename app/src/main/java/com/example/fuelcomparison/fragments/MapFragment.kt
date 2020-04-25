@@ -48,6 +48,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         this.googleMap!!.setOnMapLongClickListener(this)
         this.googleMap!!.setOnMarkerClickListener(this)
         this.googleMap!!.setOnCameraIdleListener(this)
+        zoomMapToPosition(LatLng(50.06222046451725, 19.938685186207294))
     }
 
     override fun onMapLongClick(latLng: LatLng) {}
@@ -62,5 +63,9 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     @Deprecated("")
     fun setController(controller: MapFragmentController?) {
         this.controller = controller
+    }
+
+    fun zoomMapToPosition(position: LatLng?) {
+        googleMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 12f), null)
     }
 }
