@@ -42,6 +42,7 @@
     <!--URLs-->
     <string name="loginUrl">http://10.0.2.2:8000/login</string>
     <string name="registerUrl">http://10.0.2.2:8000/register</string>
+    <string name="retrieveStationsUrl">http://10.0.2.2:8000/retrieveStations</string>
 
     <!--Tags-->
     <string name="mapFragmentTag">MAP_FRAGMENT</string>

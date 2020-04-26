@@ -83,7 +83,7 @@ class AsyncConnectionTask internal constructor(
     }
 
     enum class RequestType {
-        NONE, LOGIN, REGISTER
+        NONE, LOGIN, REGISTER, RETRIEVE_GAS_STATIONS
     }
 
     companion object {

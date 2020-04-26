@@ -8,24 +8,29 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.fuelcomparison.R
 import com.example.fuelcomparison.controllers.MapFragmentController
+import com.example.fuelcomparison.data.GasStation
+import com.example.fuelcomparison.model.MapFragmentModel
 import com.example.fuelcomparison.source.AsyncConnectionTaskFactory
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.*
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import java.util.*
 
 class MapFragment : Fragment(), OnMapReadyCallback,
     OnMapLongClickListener, OnMarkerClickListener, OnCameraIdleListener {
     private var controller: MapFragmentController? = null
     private var googleMap: GoogleMap? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         controller = MapFragmentController(
-            this,
+            this, MapFragmentModel(),
             Geocoder(activity, Locale.getDefault()), AsyncConnectionTaskFactory()
         )
     }
@@ -58,6 +63,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     override fun onCameraIdle() {
         val cameraBounds = googleMap!!.projection.visibleRegion.latLngBounds
+        controller!!.processRetrieveGasStations(cameraBounds)
     }
 
     @Deprecated("")
@@ -67,5 +73,17 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
     fun zoomMapToPosition(position: LatLng?) {
         googleMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 12f), null)
+    }
+
+    fun clearCurrentStations() {
+        controller!!.clearGasStations(googleMap!!)
+    }
+
+    fun createGasStationMarker(gasStation: GasStation): Marker {
+        return googleMap!!.addMarker(
+            MarkerOptions()
+                .position(LatLng(gasStation.latitude, gasStation.longitude))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
+        )
     }
 }
