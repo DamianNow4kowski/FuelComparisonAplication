@@ -19,10 +19,24 @@
     <string name="username">Nazwa użytkownika</string>
     <string name="confirmPassword">Potwierdź hasło</string>
     <string name="loginToAccountLabel">Zaloguj się na konto!</string>
+    <string name="gasStationName">Nazwa</string>
+    <string name="gasStationStreet">Ulica</string>
+    <string name="gasStationCity">Miasto</string>
+    <string name="latitude">Szerokość geograficzna</string>
+    <string name="longitude">Długość geograficzna</string>
+    <string name="gasStationOpeningOursFrom">Otwarte od</string>
+    <string name="gasStationOpeningOursTo">Otwarte do</string>
+    <string name="petrol95">Benzyna 95</string>
+    <string name="petrol98">Benzyna 98</string>
+    <string name="dieselFuel">Diesel</string>
+    <string name="naturalGas">Gaz ziemny</string>
+    <string name="isForDisabledPeople">Udogodnienia dla niepełnosprawnych</string>
+    <string name="isForElectricCars">Ładowanie elektrycznych pojazdów</string>
 
     <!--Buttons Labels-->
     <string name="loginButtonText">ZALOGUJ SIĘ</string>
     <string name="registerButtonText">ZAREJESTRUJ SIĘ</string>
+    <string name="addGasStation">DODAJ STACJĘ</string>
 
     <!--Toast Messages-->
     <string name="connectionTimeout">Czas połączenia był zbyt długi.</string>
@@ -33,6 +47,8 @@
     <string name="userIdConfirmText">Proszę zapamiętaj swoje id:</string>
     <string name="loginDataIncorrect">Niepoprawne dane logowania.Spróbuj ponownie.</string>
     <string name="succesfulkRegistration">Twoje konto zostało utworzone.</string>
+    <string name="addGasStationError">Nie można dodać stacji. Pojawił się nieznany błąd.</string>
+    <string name="addedGasStationSuccessful">Pomyślnie dodano stację paliw.</string>
 
     <!--Navigation Menu-->
     <string name="navigation_drawer_open">Otwieranie nawigacji</string>
@@ -43,6 +59,7 @@
     <string name="loginUrl">http://10.0.2.2:8000/login</string>
     <string name="registerUrl">http://10.0.2.2:8000/register</string>
     <string name="retrieveStationsUrl">http://10.0.2.2:8000/retrieveStations</string>
+    <string name="addStationUrl">http://10.0.2.2:8000/addStation</string>
 
     <!--Tags-->
     <string name="mapFragmentTag">MAP_FRAGMENT</string>

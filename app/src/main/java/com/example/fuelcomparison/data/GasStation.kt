@@ -9,16 +9,21 @@ class GasStation : Serializable {
     var city = ""
     var latitude = 0.0
     var longitude = 0.0
-    override fun toString(): String {
-        return "GasStation{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                '}'
-    }
+    var accepted = false
+    var openFrom: String = ""
+    var openTo: String = ""
+    var hasPetrol95: Boolean = false
+    var hasPetrol98: Boolean = false
+    var hasDieselFuel: Boolean = false
+    var hasNaturalGas: Boolean = false
+    var isForElectricCars: Boolean = false
+    var isForDisabledPeople: Boolean = false
 
     companion object {
         private const val serialVersionUID = -7619773757862241235L
+    }
+
+    override fun toString(): String {
+        return "GasStation(id=$id, name='$name', address='$address', city='$city', latitude=$latitude, longitude=$longitude, accepted=$accepted, openFrom='$openFrom', openTo='$openTo', hasPetrol95=$hasPetrol95, hasPetrol98=$hasPetrol98, hasDieselFuel=$hasDieselFuel, hasNaturalGas=$hasNaturalGas, isForElectricCars=$isForElectricCars, isForDisabledPeople=$isForDisabledPeople)"
     }
 }

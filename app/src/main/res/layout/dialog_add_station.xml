@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/addGasStationDialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/gasStationName"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:hint="@string/gasStationName"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/gasStationStreet"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:hint="@string/gasStationStreet"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/gasStationCity"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:hint="@string/gasStationCity"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/gasStationLatitude"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:hint="@string/latitude"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/gasStationLongitude"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:hint="@string/longitude"
+            android:inputType="numberDecimal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/gasStationOpenFrom"
+                style="@style/EditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:focusable="true"
+                android:hint="@string/gasStationOpeningOursFrom"
+                android:inputType="time"
+                android:maxLength="5" />
+
+            <EditText
+                android:id="@+id/gasStationOpenTo"
+                style="@style/EditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:focusable="true"
+                android:hint="@string/gasStationOpeningOursTo"
+                android:inputType="time"
+                android:maxLength="5" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="5dp"
+            android:background="@color/colorAccent" />
+
+        <CheckBox
+            android:id="@+id/hasPetrol95"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/petrol95" />
+
+        <CheckBox
+            android:id="@+id/hasPetrol98"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/petrol98" />
+
+        <CheckBox
+            android:id="@+id/hasDieselFuel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/dieselFuel" />
+
+        <CheckBox
+            android:id="@+id/hasNaturalGas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/naturalGas" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="5dp"
+            android:background="@color/colorAccent" />
+
+        <CheckBox
+            android:id="@+id/isGasStationForDisabledPeople"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/isForDisabledPeople" />
+
+        <CheckBox
+            android:id="@+id/isGasStationForElectricCars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/isForElectricCars" />
+
+        <Button
+            android:id="@+id/addStationButton"
+            style="@style/ButtonAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/addGasStation" />
+
+    </LinearLayout>
+</ScrollView>

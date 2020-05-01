@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import com.example.fuelcomparison.R
 import com.example.fuelcomparison.controllers.MapFragmentController
 import com.example.fuelcomparison.data.GasStation
+import com.example.fuelcomparison.dialogs.AddGasStationDialog
 import com.example.fuelcomparison.model.MapFragmentModel
 import com.example.fuelcomparison.source.AsyncConnectionTaskFactory
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.GoogleMap.*
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -22,8 +22,9 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import java.util.*
 
-class MapFragment : Fragment(), OnMapReadyCallback,
-    OnMapLongClickListener, OnMarkerClickListener, OnCameraIdleListener {
+class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMapClickListener,
+    GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener,
+    GoogleMap.OnCameraIdleListener {
     private var controller: MapFragmentController? = null
     private var googleMap: GoogleMap? = null
 
@@ -49,21 +50,21 @@ class MapFragment : Fragment(), OnMapReadyCallback,
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+        googleMap.setOnMapLongClickListener(this)
+        googleMap.setOnMarkerClickListener(this)
+        googleMap.setOnCameraIdleListener(this)
+        googleMap.setOnMapClickListener(this)
         this.googleMap = googleMap
-        this.googleMap!!.setOnMapLongClickListener(this)
-        this.googleMap!!.setOnMarkerClickListener(this)
-        this.googleMap!!.setOnCameraIdleListener(this)
         zoomMapToPosition(LatLng(50.06222046451725, 19.938685186207294))
-    }
-
-    override fun onMapLongClick(latLng: LatLng) {}
-    override fun onMarkerClick(marker: Marker): Boolean {
-        return true
     }
 
     override fun onCameraIdle() {
         val cameraBounds = googleMap!!.projection.visibleRegion.latLngBounds
         controller!!.processRetrieveGasStations(cameraBounds)
+    }
+
+    override fun onMultiWindowModeChanged(isInMultiWindowMode: Boolean) {
+
     }
 
     @Deprecated("")
@@ -86,4 +87,32 @@ class MapFragment : Fragment(), OnMapReadyCallback,
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
         )
     }
+
+    fun processAddGasStation(gasStation: GasStation?) {
+        controller!!.processAddGasStation(gasStation)
+    }
+
+    private fun showAddStationDialog(gasStation: GasStation) {
+        AddGasStationDialog(activity, this, gasStation).show()
+    }
+
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        return true
+    }
+
+    override fun onMapClick(p0: LatLng) {
+        val gasStation =
+            controller!!.createGasStationFromLatLng(p0)
+        gasStation!!.ifPresent { gasStation: GasStation? ->
+            showAddStationDialog(
+                gasStation!!
+            )
+        }
+    }
+
+    override fun onMapLongClick(latLng: LatLng) {
+        onMapClick(latLng)
+    }
+
 }

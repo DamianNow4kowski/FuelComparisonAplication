@@ -28,7 +28,7 @@
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
-    <style name="ToolbarTheme" parent="Theme.AppCompat.NoActionBar"/>
+    <style name="ToolbarTheme" parent="Theme.AppCompat.NoActionBar" />
 
     <style name="EditText">
         <item name="android:textSize">@dimen/h3</item>
@@ -44,6 +44,11 @@
         <item name="android:background">@drawable/button_accent_background</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">20dp</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowMinWidthMajor">60%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
     </style>
 
 </resources>

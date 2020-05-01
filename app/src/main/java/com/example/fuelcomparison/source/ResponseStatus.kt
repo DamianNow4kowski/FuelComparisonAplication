@@ -23,4 +23,8 @@ class ResponseStatus {
         const val INCORRECT_DATA = "Incorrect data"
         const val USERNAME_OR_EMAIL_TAKEN = "Username or email taken"
     }
+
+    object AddGasStation {
+        const val DB_INSERT_EXCEPTION = "Error during insert gas station"
+    }
 }

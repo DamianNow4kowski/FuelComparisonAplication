@@ -12,14 +12,18 @@ import com.example.fuelcomparison.source.AsyncConnectionTask
 import com.example.fuelcomparison.source.AsyncConnectionTaskFactory
 import com.example.fuelcomparison.source.RequestBuilder
 import com.example.fuelcomparison.source.ResponseStatus
+import com.example.fuelcomparison.source.Util.showToast
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.IOException
 import java.lang.reflect.Type
+import java.util.*
 
 
 class MapFragmentController(
@@ -29,7 +33,12 @@ class MapFragmentController(
 ) : AsyncConnectionCallback {
 
     override fun processRequestResponse(response: Response?) {
-        handleRetrieveGasStationsResponse(response!!.responseContent)
+        if (response!!.requestType == AsyncConnectionTask.RequestType.GAS_STATION_DATA) handleAddGasStationResponse(
+            response.responseContent
+        )
+        else if (response.requestType == AsyncConnectionTask.RequestType.RETRIEVE_GAS_STATIONS) handleRetrieveGasStationsResponse(
+            response.responseContent
+        )
     }
 
     override fun processConnectionTimeout() {}
@@ -59,7 +68,7 @@ class MapFragmentController(
 
     private fun handleSuccessfulRetrieveGasStations(responseContent: String) {
         val listType: Type =
-            object : TypeToken<List<GasStation?>?>() {}.getType()
+            object : TypeToken<List<GasStation?>?>() {}.type
         val stations: List<GasStation> =
             Gson().fromJson(responseContent, listType)
         mapView.clearCurrentStations()
@@ -75,6 +84,62 @@ class MapFragmentController(
         for (station in stations) {
             val marker: Marker = mapView.createGasStationMarker(station)
             mapModel!!.markersStations[marker] = station
+        }
+    }
+
+    fun createGasStationFromLatLng(position: LatLng): Optional<GasStation>? {
+        return try {
+            val gasStation = GasStation()
+            val address =
+                geocoder.getFromLocation(position.latitude, position.longitude, 1)[0]
+            gasStation.address = address.getAddressLine(0)
+            gasStation.city = address.locality
+            gasStation.latitude = position.latitude
+            gasStation.longitude = position.longitude
+            Optional.of(gasStation)
+        } catch (e: IOException) {
+            Optional.empty()
+        } catch (e: IndexOutOfBoundsException) {
+            Optional.empty()
+        }
+    }
+
+    fun processAddGasStation(gasStation: GasStation?) {
+        val stationJson = Gson().toJson(gasStation)
+        val requestBuilder =
+            RequestBuilder(mapView.getString(R.string.addStationUrl))
+        requestBuilder.putParameter("stationData", stationJson)
+        taskFactory.create(this, AsyncConnectionTask.RequestType.GAS_STATION_DATA)
+            .execute(requestBuilder.build())
+    }
+
+    private fun handleAddGasStationResponse(response: String) {
+        try {
+            val responseJson = JSONObject(response)
+            val status = responseJson.getInt(ResponseStatus.Key.STATUS)
+            if (status == ResponseStatus.General.SUCCESS) {
+                handleSuccessfulAddStation(responseJson.getString(ResponseStatus.Key.CONTENT))
+            } else {
+                handleUnsuccessfulAddStation(responseJson.getString(ResponseStatus.Key.REASON))
+            }
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun handleSuccessfulAddStation(responseContent: String) {
+        showToast(mapView.activity, mapView.getString(R.string.addedGasStationSuccessful))
+        val gasStation = Gson().fromJson(responseContent, GasStation::class.java)
+        val marker = mapView.createGasStationMarker(gasStation)
+        mapModel!!.markersStations[marker] = gasStation
+    }
+
+    private fun handleUnsuccessfulAddStation(errorCode: String) {
+        when (errorCode) {
+            ResponseStatus.AddGasStation.DB_INSERT_EXCEPTION -> showToast(
+                mapView.activity,
+                mapView.getString(R.string.addGasStationError)
+            )
         }
     }
 }
