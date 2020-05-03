@@ -26,6 +26,7 @@
         <activity android:name=".activities.BaseActivity" />
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.GasStationInfoActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

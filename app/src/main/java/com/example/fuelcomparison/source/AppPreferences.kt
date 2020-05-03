@@ -55,8 +55,12 @@ class AppPreferences private constructor(context: Context) {
         }
     }
 
+    fun getBoolean(key: Key): Boolean {
+        return sharedPreferences.getBoolean(key.name, false)
+    }
+
     enum class Key {
-        USER_ID, USER_NAME, USER_EMAIL, USER_TOKEN
+        USER_ID, USER_NAME, USER_EMAIL, USER_TOKEN, USER_ADMIN
     }
 
     companion object {

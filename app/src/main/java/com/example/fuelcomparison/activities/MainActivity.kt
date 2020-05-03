@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.fuelcomparison.R
 import com.example.fuelcomparison.controllers.MainActivityController
+import com.example.fuelcomparison.data.GasStation
+import com.example.fuelcomparison.enums.IntentKey
 import com.example.fuelcomparison.fragments.MapFragment
 import com.example.fuelcomparison.source.AppPreferences
 import com.example.fuelcomparison.source.UserDataHolder
@@ -44,6 +46,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun startGasStationInfoActivity(gasStation: GasStation?) {
+        val intent = Intent(this, GasStationInfoActivity::class.java)
+        intent.putExtra(IntentKey.GAS_STATION.name, gasStation)
+        startActivity(intent)
     }
 
     private fun initializeDrawerLayout() {

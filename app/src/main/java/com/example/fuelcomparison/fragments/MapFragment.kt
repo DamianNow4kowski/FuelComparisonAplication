@@ -98,6 +98,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMapClickListener
 
 
     override fun onMarkerClick(marker: Marker): Boolean {
+        controller!!.handleMapMarkerClick(marker)
         return true
     }
 

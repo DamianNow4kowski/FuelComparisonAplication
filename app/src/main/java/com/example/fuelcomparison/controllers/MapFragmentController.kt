@@ -3,6 +3,7 @@ package com.example.fuelcomparison.controllers
 
 import android.location.Geocoder
 import com.example.fuelcomparison.R
+import com.example.fuelcomparison.activities.MainActivity
 import com.example.fuelcomparison.data.GasStation
 import com.example.fuelcomparison.data.Response
 import com.example.fuelcomparison.fragments.MapFragment
@@ -52,6 +53,16 @@ class MapFragmentController(
         requestBuilder.putParameter("longWest", visibleRegion.southwest.longitude.toString())
         taskFactory.create(this, AsyncConnectionTask.RequestType.RETRIEVE_GAS_STATIONS)
             .execute(requestBuilder.build())
+    }
+
+    fun handleMapMarkerClick(marker: Marker?) {
+        val gasStation = mapModel!!.markersStations[marker]
+        gasStation?.let { launchGasStationInfoActivity(it) }
+    }
+
+    private fun launchGasStationInfoActivity(gasStation: GasStation) {
+        val activity = mapView.activity as MainActivity?
+        activity!!.startGasStationInfoActivity(gasStation)
     }
 
     private fun handleRetrieveGasStationsResponse(response: String) {

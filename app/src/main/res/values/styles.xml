@@ -51,4 +51,12 @@
         <item name="android:windowMinWidthMinor">90%</item>
     </style>
 
+    <style name="h1">
+        <item name="android:textSize">@dimen/h1</item>
+    </style>
+
+    <style name="h2">
+        <item name="android:textSize">@dimen/h2</item>
+    </style>
+
 </resources>
