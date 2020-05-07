@@ -14,16 +14,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-<!--                <Button-->
-<!--                    android:id="@+id/confirmStation"-->
-<!--                    android:layout_width="@android:dimen/app_icon_size"-->
-<!--                    android:layout_height="@android:dimen/app_icon_size"-->
-<!--                    android:background="@android:drawable/btn_star_big_on"-->
-<!--                    android:onClick="confirmStationClick" />-->
+                <Button
+                    android:id="@+id/confirmStation"
+                    android:layout_width="@android:dimen/app_icon_size"
+                    android:layout_height="@android:dimen/app_icon_size"
+                    android:background="@android:drawable/btn_star_big_on"
+                    android:onClick="confirmStationClick" />
 
 <!--                <Button-->
 <!--                    android:id="@+id/navigationButton"-->
@@ -32,7 +32,7 @@
 <!--                    android:layout_alignParentEnd="true"-->
 <!--                    android:background="@drawable/ic_navigation" />-->
 
-<!--            </RelativeLayout>-->
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/gasStationAddress"
@@ -117,6 +117,32 @@
                 android:layout_height="wrap_content"
                 android:text="@string/opinions"
                 android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/commentBody"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/comment_hint"
+                android:inputType="text" />
+
+            <RatingBar
+                android:id="@+id/commentRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1" />
+
+            <Button
+                android:id="@+id/commentSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="handleSubmitCommentClick"
+                android:text="@string/comment_button" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/gasStationOpinions"

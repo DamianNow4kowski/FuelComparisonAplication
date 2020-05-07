@@ -1,6 +1,7 @@
 package com.example.fuelcomparison.controllers
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import com.example.fuelcomparison.R
 import com.example.fuelcomparison.activities.GasStationInfoActivity
@@ -116,6 +117,47 @@ class GasStationInfoController(
         val comments: List<Comment> =
             Gson().fromJson<List<Comment>>(responseContent, listType)
         commentsAdapter.addComments(comments)
+    }
+
+    fun processCommentSubmitRequest(
+        commentBody: String?,
+        commentRate: String?,
+        gasStationID: String?
+    ) {
+        sendCommentSubmitRequest(commentBody, commentRate, gasStationID)
+    }
+
+    private fun sendCommentSubmitRequest(
+        commentBody: String?,
+        commentRate: String?,
+        gasStationID: String?
+    ) {
+        val appPreferences = AppPreferences.getInstance(activity)
+        val requestBuilder =
+            RequestBuilder(activity.getString(R.string.addCommentUrl))
+        requestBuilder.putParameter(
+            "user_id",
+            java.lang.String.valueOf(appPreferences!!.getLong(AppPreferences.Key.USER_ID))
+        )
+        requestBuilder.putParameter("station_id", gasStationID)
+        requestBuilder.putParameter("rating", commentRate)
+        requestBuilder.putParameter("content", commentBody)
+        val registerTask =
+            connectionTaskFactory.create(this, AsyncConnectionTask.RequestType.SUBMIT_COMMENT)
+        registerTask.execute(requestBuilder.build())
+    }
+
+    fun toggleFavouriteStatus() {
+        Log.d("DUPA_SIZE", "Fav")
+        val requestBuilder =
+            RequestBuilder(activity.getString(R.string.toggleGasStationFavourite))
+        requestBuilder.putParameter(
+            "userId",
+            UserDataHolder.getUserData(activity).id.toString() + ""
+        )
+        requestBuilder.putParameter("stationId", gasStation.id.toString() + "")
+        connectionTaskFactory.create(this, AsyncConnectionTask.RequestType.TOGGLE_FAVOURITE_STATUS)
+            .execute(requestBuilder.build())
     }
 
     init {

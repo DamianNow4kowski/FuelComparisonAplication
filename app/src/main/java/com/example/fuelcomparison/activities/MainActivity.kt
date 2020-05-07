@@ -14,6 +14,7 @@ import com.example.fuelcomparison.R
 import com.example.fuelcomparison.controllers.MainActivityController
 import com.example.fuelcomparison.data.GasStation
 import com.example.fuelcomparison.enums.IntentKey
+import com.example.fuelcomparison.fragments.FavouriteStationsFragment
 import com.example.fuelcomparison.fragments.MapFragment
 import com.example.fuelcomparison.source.AppPreferences
 import com.example.fuelcomparison.source.UserDataHolder
@@ -76,6 +77,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         bottomNavigationView!!.setNavigationItemSelectedListener(this)
     }
 
+    private fun setFavouriteStationsFragment() {
+        activeFragment = FavouriteStationsFragment()
+        var fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction = fragmentTransaction.replace(
+            R.id.frameLayout,
+            activeFragment!!,
+            getString(R.string.favStationsFragmentTag)
+        )
+        fragmentTransaction = fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+    }
+
     private fun displayBasicUserDataInNavView() {
         val navHeaderView = topNavigationView!!.getHeaderView(0)
         val usernameLabel = navHeaderView.findViewById<TextView>(R.id.userNameLabel)
@@ -100,6 +113,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onNavigationItemSelected(@NonNull item: MenuItem): Boolean {
         val itemId = item.itemId
         when (itemId) {
+            R.id.navMapFragment -> setMapFragment()
+            R.id.navFavStations -> setFavouriteStationsFragment()
             R.id.navLogout -> logout()
         }
         drawerLayout!!.closeDrawer(Gravity.START)

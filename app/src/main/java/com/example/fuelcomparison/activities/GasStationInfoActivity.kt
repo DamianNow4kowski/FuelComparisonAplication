@@ -3,7 +3,10 @@ package com.example.fuelcomparison.activities
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
+import android.view.View
 import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +18,7 @@ import com.example.fuelcomparison.controllers.GasStationInfoController
 import com.example.fuelcomparison.data.GasStation
 import com.example.fuelcomparison.enums.IntentKey
 import com.example.fuelcomparison.source.AsyncConnectionTaskFactory
+import java.lang.String
 
 class GasStationInfoActivity : Activity() {
     protected var controller: GasStationInfoController? = null
@@ -30,6 +34,8 @@ class GasStationInfoActivity : Activity() {
     private var gasStationFuels: RecyclerView? = null
     private var gasStationComments: RecyclerView? = null
     private var gasStation: GasStation? = null
+    private var commentBody: EditText? = null
+    private var commentRate: RatingBar? = null
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info_gas_station)
@@ -39,6 +45,11 @@ class GasStationInfoActivity : Activity() {
         controller = GasStationInfoController(this, AsyncConnectionTaskFactory(), gasStation!!)
         controller!!.loadGasStationFuels(gasStation!!.id)
         controller!!.loadGasStationComments(gasStation!!.id)
+    }
+
+    fun confirmStationClick(view: View?) {
+//        controller!!.processConfirmStation(gasStation!!.id)
+        controller!!.toggleFavouriteStatus()
     }
 
     fun setGasStationFuelsAdapter(adapter: GasStationFuelsAdapter?) {
@@ -65,6 +76,21 @@ class GasStationInfoActivity : Activity() {
         gasStationComments = findViewById(R.id.gasStationOpinions)
         gasStationComments!!.setHasFixedSize(true)
         gasStationComments!!.layoutManager = LinearLayoutManager(this)
+
+        commentBody = findViewById(R.id.commentBody)
+        commentRate = findViewById(R.id.commentRate)
+
+        findViewById<TextView?>(R.id.gasStationName)?.setOnClickListener { controller!!.toggleFavouriteStatus() }
+    }
+
+
+    fun handleSubmitCommentClick(view: View?) {
+        val comment_body = commentBody!!.text.toString().trim { it <= ' ' }
+        val comment_rate = commentRate!!.rating.toInt()
+        controller!!.processCommentSubmitRequest(
+            comment_body, comment_rate.toString(),
+            String.valueOf(gasStation!!.id)
+        )
     }
 
     @SuppressLint("SetTextI18n")

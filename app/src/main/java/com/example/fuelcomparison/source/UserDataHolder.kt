@@ -1,13 +1,13 @@
 package com.example.fuelcomparison.source
 
 import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import com.example.fuelcomparison.data.UserData
-import com.example.fuelcomparison.source.AppPreferences
 import com.example.fuelcomparison.source.AppPreferences.Companion.getInstance
 
 class UserDataHolder private constructor() {
     companion object {
-        private lateinit var userData: UserData
+        lateinit var userData: UserData
         fun getUserData(context: Context): UserData {
             initializeUserData(context)
             return userData
@@ -36,8 +36,7 @@ class UserDataHolder private constructor() {
             appPreferences!!.remove(
                 AppPreferences.Key.USER_ID,
                 AppPreferences.Key.USER_EMAIL,
-                AppPreferences.Key.USER_NAME,
-                AppPreferences.Key.USER_TOKEN
+                AppPreferences.Key.USER_NAME
             )
         }
     }

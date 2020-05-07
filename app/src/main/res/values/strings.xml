@@ -36,7 +36,7 @@
     <string name="isForElectricCars">Ładowanie elektrycznych pojazdów</string>
     <string name="availablePetrol">Dostępne rodzaje paliw:</string>
     <string name="facilities">Obiekty:</string>
-    <string name="opinions">Opinie:</string>
+    <string name="opinions">Wpisz swoją opinię:</string>
 
     <!--Buttons Labels-->
     <string name="loginButtonText">ZALOGUJ SIĘ</string>
@@ -55,11 +55,13 @@
     <string name="succesfulkRegistration">Twoje konto zostało utworzone.</string>
     <string name="addGasStationError">Nie można dodać stacji. Pojawił się nieznany błąd.</string>
     <string name="addedGasStationSuccessful">Pomyślnie dodano stację paliw.</string>
+    <string name="comment_hint">Moja opinia...</string>
 
     <!--Navigation Menu-->
     <string name="navigation_drawer_open">Otwieranie nawigacji</string>
     <string name="navigation_drawer_close">Zamykanie nawigacji</string>
-    <string name="mapFragment">Map</string>
+    <string name="mapFragment">Mapa</string>
+    <string name="favouriteStations">Ulubione stacje</string>
     <string name="logout">Wyloguj się</string>
 
     <!--URLs-->
@@ -72,8 +74,12 @@
     <string name="retrievePaymentMethods">http://10.0.2.2:8000/getPaymentMethods</string>
     <string name="fuelPriceUrl">http://10.0.2.2:8000/addFuelPrice</string>
     <string name="confirmStationUrl">http://10.0.2.2:8000/confirmStation</string>
+    <string name="addCommentUrl">http://10.0.2.2:8000/addComment</string>
+    <string name="retrieveFavouriteStations">http://10.0.2.2:8000/getFavouriteStations</string>
+    <string name="toggleGasStationFavourite">http://10.0.2.2:8000/toggleGasStationFavourite</string>
 
     <!--Tags-->
     <string name="mapFragmentTag">MAP_FRAGMENT</string>
+    <string name="favStationsFragmentTag">FAV_STATIONS_FRAGMENT</string>
 
 </resources>

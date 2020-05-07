@@ -35,4 +35,8 @@ open class BaseActivity : AppCompatActivity() {
         val progressBar: ProgressBar = findViewById(R.id.progressBar)
         progressBar.visibility = View.GONE
     }
+
+    fun changeTitle(toolbarId: Int, title: String?) {
+        setupToolbar(toolbarId, title)
+    }
 }
