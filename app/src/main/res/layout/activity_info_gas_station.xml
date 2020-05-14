@@ -25,12 +25,12 @@
                     android:background="@android:drawable/btn_star_big_on"
                     android:onClick="confirmStationClick" />
 
-<!--                <Button-->
-<!--                    android:id="@+id/navigationButton"-->
-<!--                    android:layout_width="48dp"-->
-<!--                    android:layout_height="48dp"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    android:background="@drawable/ic_navigation" />-->
+                <Button
+                    android:id="@+id/navigationButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/ic_navigation" />
 
             </RelativeLayout>
 

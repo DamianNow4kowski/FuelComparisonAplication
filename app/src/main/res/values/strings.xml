@@ -56,6 +56,10 @@
     <string name="addGasStationError">Nie można dodać stacji. Pojawił się nieznany błąd.</string>
     <string name="addedGasStationSuccessful">Pomyślnie dodano stację paliw.</string>
     <string name="comment_hint">Moja opinia...</string>
+    <string name="newFuelPrice">Nowa cena paliwa</string>
+    <string name="addNewFuelPriceButtonText">Dodaj nową cenę paliwa</string>
+    <string name="confirmFuelPriceButtonText">Potwierdź cenę paliwa</string>
+    <string name="writeFuelPrice">Cena paliwa nie może być pusta</string>
 
     <!--Navigation Menu-->
     <string name="navigation_drawer_open">Otwieranie nawigacji</string>

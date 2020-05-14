@@ -2,12 +2,11 @@ package com.example.fuelcomparison.activities
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.RatingBar
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +35,7 @@ class GasStationInfoActivity : Activity() {
     private var gasStation: GasStation? = null
     private var commentBody: EditText? = null
     private var commentRate: RatingBar? = null
+    private var navigationButton: Button? = null
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info_gas_station)
@@ -80,7 +80,21 @@ class GasStationInfoActivity : Activity() {
         commentBody = findViewById(R.id.commentBody)
         commentRate = findViewById(R.id.commentRate)
 
+        navigationButton = findViewById(R.id.navigationButton)
+        navigationButton!!.setOnClickListener(View.OnClickListener { v: View? ->
+            val packageName = "com.google.android.apps.maps"
+            var query = "google.navigation:q="
+            query += gasStation!!.latitude.toString() + "," + gasStation!!.longitude
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(query))
+            intent.setPackage(packageName)
+            startActivity(intent)
+        })
+
         findViewById<TextView?>(R.id.gasStationName)?.setOnClickListener { controller!!.toggleFavouriteStatus() }
+    }
+
+    fun saveFuelPrice(fuelId: Long, price: kotlin.String?) {
+        controller!!.processSaveFuelPriceRequest(gasStation!!.id, fuelId, price)
     }
 
 

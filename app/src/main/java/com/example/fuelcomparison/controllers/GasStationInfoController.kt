@@ -160,6 +160,20 @@ class GasStationInfoController(
             .execute(requestBuilder.build())
     }
 
+    fun processSaveFuelPriceRequest(
+        stationId: Long,
+        fuelId: Long,
+        price: String?
+    ) {
+        val requestBuilder =
+            RequestBuilder(activity.getString(R.string.fuelPriceUrl))
+        requestBuilder.putParameter("stationId", java.lang.Long.toString(stationId))
+        requestBuilder.putParameter("fuelId", java.lang.Long.toString(fuelId))
+        requestBuilder.putParameter("price", price)
+        connectionTaskFactory.create(this, AsyncConnectionTask.RequestType.SAVE_FUEL_PRICE)
+            .execute(requestBuilder.build())
+    }
+
     init {
         this.activity = activity
         this.connectionTaskFactory = taskFactory

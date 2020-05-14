@@ -9,6 +9,7 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fuelcomparison.R
 import com.example.fuelcomparison.data.Fuel
+import com.example.fuelcomparison.dialogs.FuelPriceDialog
 
 class GasStationFuelsAdapter(
     @param:NonNull private val context: Context,
@@ -31,8 +32,8 @@ class GasStationFuelsAdapter(
         position: Int
     ) {
         val fuel: Fuel = fuels[position]
-        holder.fuelName.setText(fuel.name)
-        holder.fuelPrice.setText(fuel.price.toString())
+        holder.fuelName.text = fuel.name
+        holder.fuelPrice.text = fuel.price.toString()
     }
 
     fun addFuels(fuels: List<Fuel>?) {
@@ -42,11 +43,17 @@ class GasStationFuelsAdapter(
     }
 
     inner class ViewHolder internal constructor(itemView: View) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
         val fuelName: TextView
         val fuelPrice: TextView
         override fun onClick(v: View) {
-//            showFuelPriceDialog()
+            showFuelPriceDialog()
+        }
+
+        private fun showFuelPriceDialog() {
+            val cos = FuelPriceDialog(context, fuels[this.adapterPosition])
+            cos.show()
         }
 
         init {
