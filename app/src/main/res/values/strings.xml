@@ -60,6 +60,8 @@
     <string name="addNewFuelPriceButtonText">Dodaj nową cenę paliwa</string>
     <string name="confirmFuelPriceButtonText">Potwierdź cenę paliwa</string>
     <string name="writeFuelPrice">Cena paliwa nie może być pusta</string>
+    <string name="commentAdded">Komentarz został dodany</string>
+    <string name="commentAddedFail">Błąd przy dodawaniu komentarza</string>
 
     <!--Navigation Menu-->
     <string name="navigation_drawer_open">Otwieranie nawigacji</string>

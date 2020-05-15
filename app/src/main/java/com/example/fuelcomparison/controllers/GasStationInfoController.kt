@@ -42,6 +42,9 @@ class GasStationInfoController(
                 AsyncConnectionTask.RequestType.RETRIEVE_COMMENTS -> handleReceivedGasStationComments(
                     response.responseContent
                 )
+                AsyncConnectionTask.RequestType.SUBMIT_COMMENT -> handleCommentSubmitResponse(
+                    response.responseContent
+                )
             }
         }
     }
@@ -191,5 +194,22 @@ class GasStationInfoController(
         val intent: Intent = activity.getIntent()
         activity.finish()
         activity.startActivity(intent)
+    }
+
+    private fun handleCommentSubmitResponse(responseContent: String) {
+        try {
+            val responseJson = JSONObject(responseContent)
+            val status = responseJson.getInt(ResponseStatus.Key.STATUS)
+            if (status == ResponseStatus.General.SUCCESS) {
+                val intent = activity.intent
+                activity.finish()
+                activity.startActivity(intent)
+                showToast(activity, activity.getString(R.string.commentAdded))
+            } else {
+                showToast(activity, activity.getString(R.string.commentAddedFail))
+            }
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
     }
 }
