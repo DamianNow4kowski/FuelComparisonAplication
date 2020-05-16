@@ -62,6 +62,8 @@
     <string name="writeFuelPrice">Cena paliwa nie może być pusta</string>
     <string name="commentAdded">Komentarz został dodany</string>
     <string name="commentAddedFail">Błąd przy dodawaniu komentarza</string>
+    <string name="fuelPriceSaved">Cena paliwa została pomyślnie dodana.</string>
+    <string name="fuelPriceSaveError">Błąd przy dodawaniu ceny paliwa</string>
 
     <!--Navigation Menu-->
     <string name="navigation_drawer_open">Otwieranie nawigacji</string>

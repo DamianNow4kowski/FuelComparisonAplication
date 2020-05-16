@@ -45,6 +45,9 @@ class GasStationInfoController(
                 AsyncConnectionTask.RequestType.SUBMIT_COMMENT -> handleCommentSubmitResponse(
                     response.responseContent
                 )
+                AsyncConnectionTask.RequestType.SAVE_FUEL_PRICE -> handleReceivedFuelPriceConfirm(
+                    response.responseContent
+                )
             }
         }
     }
@@ -207,6 +210,22 @@ class GasStationInfoController(
                 showToast(activity, activity.getString(R.string.commentAdded))
             } else {
                 showToast(activity, activity.getString(R.string.commentAddedFail))
+            }
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun handleReceivedFuelPriceConfirm(responseContent: String) {
+        try {
+            val jsonResponse = JSONObject(responseContent)
+            val status = jsonResponse.getInt(ResponseStatus.Key.STATUS)
+            val data = jsonResponse.getJSONObject(ResponseStatus.Key.CONTENT)
+            if (status == ResponseStatus.General.SUCCESS) {
+                showToast(activity, activity.getString(R.string.fuelPriceSaved))
+                loadGasStationFuels(data.getInt("stationId").toLong())
+            } else {
+                showToast(activity, activity.getString(R.string.fuelPriceSaveError))
             }
         } catch (e: JSONException) {
             e.printStackTrace()
