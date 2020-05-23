@@ -14,9 +14,10 @@ import com.example.fuelcomparison.source.Util.showToast
 class FuelPriceDialog(context: Context?, fuel: Fuel) :
     Dialog(context!!, R.style.DialogTheme) {
     private var newFuelPrice: EditText? = null
-    private val fuel: Fuel
-    private val activity: GasStationInfoActivity?
-    override fun onCreate(savedInstanceState: Bundle) {
+    private val fuel: Fuel = fuel
+    private val activity: GasStationInfoActivity? = context as GasStationInfoActivity?
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_fuel_price)
         newFuelPrice = findViewById(R.id.newFuelPrice)
@@ -50,8 +51,4 @@ class FuelPriceDialog(context: Context?, fuel: Fuel) :
         activity!!.saveFuelPrice(fuel.fuelId, price.toString())
     }
 
-    init {
-        this.fuel = fuel
-        activity = context as GasStationInfoActivity?
-    }
 }

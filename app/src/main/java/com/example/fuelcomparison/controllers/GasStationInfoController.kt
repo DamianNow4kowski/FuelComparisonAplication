@@ -220,6 +220,7 @@ class GasStationInfoController(
         try {
             val jsonResponse = JSONObject(responseContent)
             val status = jsonResponse.getInt(ResponseStatus.Key.STATUS)
+            Log.d("myTag", jsonResponse.toString())
             val data = jsonResponse.getJSONObject(ResponseStatus.Key.CONTENT)
             if (status == ResponseStatus.General.SUCCESS) {
                 showToast(activity, activity.getString(R.string.fuelPriceSaved))

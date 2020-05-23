@@ -52,8 +52,7 @@ class GasStationFuelsAdapter(
         }
 
         private fun showFuelPriceDialog() {
-            val cos = FuelPriceDialog(context, fuels[this.adapterPosition])
-            cos.show()
+            FuelPriceDialog(context, fuels[this.adapterPosition]).show()
         }
 
         init {
