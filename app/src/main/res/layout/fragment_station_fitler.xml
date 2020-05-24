@@ -1,0 +1,125 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".activities.FilterStationActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/loginLabel"
+        android:layout_marginBottom="10dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/filterDistanceText"
+                style="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/filterDistance" />
+
+            <EditText
+                android:id="@+id/gasStationDistance"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:hint="@string/latitude"
+                android:inputType="numberDecimal"
+                android:text="@string/defaultDistance" />
+
+            <TextView
+                android:id="@+id/filterPriceText"
+                style="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/filterPrice" />
+
+            <EditText
+                android:id="@+id/gasStationMaxPrice"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:hint="@string/latitude"
+                android:inputType="numberDecimal"
+                android:text="@string/defaultFuelPrice" />
+
+            <TextView
+                android:id="@+id/filterFuelText"
+                style="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/filterFuels" />
+
+            <CheckBox
+                android:id="@+id/hasPetrol95"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/petrol95" />
+
+            <CheckBox
+                android:id="@+id/hasPetrol98"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/petrol98" />
+
+            <CheckBox
+                android:id="@+id/hasDieselFuel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/dieselFuel" />
+
+            <CheckBox
+                android:id="@+id/hasNaturalGas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/naturalGas" />
+
+            <TextView
+                android:id="@+id/filterSpecialText"
+                style="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/filterSpecial" />
+
+            <CheckBox
+                android:id="@+id/forDisabledPeople"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/isForDisabledPeople" />
+
+            <Button
+                android:id="@+id/addStationButton"
+                style="@style/ButtonAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="handleFilterButtonClick"
+                android:text="@string/stationFilterButtonText" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

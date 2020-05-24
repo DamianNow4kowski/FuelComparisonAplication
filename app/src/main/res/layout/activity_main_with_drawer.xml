@@ -7,10 +7,11 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
-        <include
-            layout="@layout/activity_main_with_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+
+    <include
+        layout="@layout/activity_main_with_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_drawer_container"
@@ -19,26 +20,32 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="false">
 
-                <com.google.android.material.navigation.NavigationView
-                    android:id="@+id/navigation_view_top"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="top"
-                    android:background="@color/colorPrimary"
-                    app:headerLayout="@layout/navigation_drawer_header"
-                    app:itemIconTint="@color/colorNavIcon"
-                    app:menu="@menu/menu_navigation_drawer_header"/>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view_top"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:background="@color/colorPrimary"
+            app:headerLayout="@layout/navigation_drawer_header"
+            app:itemIconTint="@color/colorNavIcon"
+            app:menu="@menu/menu_navigation_drawer_header" />
 
+        <TextView
+            style="@style/h1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/facilities"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/h1" />
 
-                <com.google.android.material.navigation.NavigationView
-                    android:id="@+id/navigation_view_bottom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:background="@color/colorPrimary"
-                    app:itemIconTint="@color/colorNavIcon"
-                    app:menu="@menu/menu_navigation_drawer_bottom"/>
-
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/colorNavIcon"
+            app:menu="@menu/menu_navigation_drawer_bottom" />
 
     </com.google.android.material.navigation.NavigationView>
 

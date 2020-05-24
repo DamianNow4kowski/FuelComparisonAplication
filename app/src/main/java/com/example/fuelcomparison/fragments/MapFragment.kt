@@ -22,11 +22,11 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import java.util.*
 
-class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMapClickListener,
+class MapFragment() : Fragment(), OnMapReadyCallback, GoogleMap.OnMapClickListener,
     GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener,
     GoogleMap.OnCameraIdleListener {
     private var controller: MapFragmentController? = null
-    private var googleMap: GoogleMap? = null
+    var googleMap: GoogleMap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

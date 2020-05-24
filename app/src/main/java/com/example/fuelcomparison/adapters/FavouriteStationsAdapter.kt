@@ -2,7 +2,6 @@ package com.example.fuelcomparison.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +47,6 @@ class FavouriteStationsAdapter(
     fun addStations(stations: List<GasStation>) {
         gasStations.addAll(stations)
         notifyDataSetChanged()
-        Log.d("DUPA_SIZE", stations.size.toString() + "")
     }
 
     inner class ViewHolder(itemView: View) :

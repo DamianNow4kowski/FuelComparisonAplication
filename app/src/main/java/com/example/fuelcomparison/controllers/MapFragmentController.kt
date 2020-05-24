@@ -1,6 +1,7 @@
 package com.example.fuelcomparison.controllers
 
 
+import android.annotation.SuppressLint
 import android.location.Geocoder
 import com.example.fuelcomparison.R
 import com.example.fuelcomparison.activities.MainActivity
@@ -9,10 +10,7 @@ import com.example.fuelcomparison.data.Response
 import com.example.fuelcomparison.fragments.MapFragment
 import com.example.fuelcomparison.interfaces.AsyncConnectionCallback
 import com.example.fuelcomparison.model.MapFragmentModel
-import com.example.fuelcomparison.source.AsyncConnectionTask
-import com.example.fuelcomparison.source.AsyncConnectionTaskFactory
-import com.example.fuelcomparison.source.RequestBuilder
-import com.example.fuelcomparison.source.ResponseStatus
+import com.example.fuelcomparison.source.*
 import com.example.fuelcomparison.source.Util.showToast
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -82,13 +80,124 @@ class MapFragmentController(
             object : TypeToken<List<GasStation?>?>() {}.type
         val stations: List<GasStation> =
             Gson().fromJson(responseContent, listType)
+
+        val filteredStations = filterStations(stations)
+
         mapView.clearCurrentStations()
-        addGasStations(stations)
+        addGasStations(filteredStations)
+    }
+
+    @SuppressLint("DefaultLocale")
+    private fun filterStations(stations: List<GasStation>): List<GasStation> {
+        var stationFilter = FilterState.stationFilter
+        var filteredStations = stations
+
+        filteredStations = filterByDistance(filteredStations)
+        filteredStations = filterByPetrols(filteredStations)
+
+        if (stationFilter?.forDisabledPeople!!) {
+            filteredStations =
+                filteredStations.filter {
+                    it.isForDisabledPeople == stationFilter.forDisabledPeople
+                }
+        }
+        return filteredStations
+    }
+
+    fun calcDistance(
+        latA: Double?,
+        longA: Double?,
+        latB: Double,
+        longB: Double
+    ): Double {
+        val theDistance =
+            Math.sin(Math.toRadians(latA?.toDouble()!!)) *
+                    Math.sin(Math.toRadians(latB.toDouble())) +
+                    Math.cos(Math.toRadians(latA.toDouble())) *
+                    Math.cos(Math.toRadians(latB.toDouble())) *
+                    Math.cos(Math.toRadians(longA?.minus(longB.toDouble())!!))
+        return (Math.toDegrees(Math.acos(theDistance)) * 69.09 * 1.6093)
     }
 
     fun clearGasStations(googleMap: GoogleMap) {
         googleMap.clear()
         mapModel!!.markersStations.clear()
+    }
+
+    private fun filterByDistance(stations: List<GasStation>): List<GasStation> {
+        val stationFilter = FilterState.stationFilter
+        var filteredStations = stations
+        val currentLat = mapView.googleMap?.cameraPosition?.target?.latitude
+        val currentLon = mapView.googleMap?.cameraPosition?.target?.longitude
+        filteredStations = filteredStations.filter {
+            calcDistance(
+                currentLat,
+                currentLon,
+                it.latitude,
+                it.longitude
+            ) < stationFilter?.distance!!
+        }
+        return filteredStations
+    }
+
+    private fun filterByPrices(stations: List<GasStation>): List<GasStation> {
+        val stationFilter = FilterState.stationFilter
+        var filteredStations = stations
+        filteredStations = filteredStations.filter {
+            val fuels = it.fuels
+            var areAllCheap = true
+            for (fuel in fuels) {
+                if (fuel.price >= stationFilter?.maxPrice!!) {
+                    areAllCheap = false
+                    break
+                }
+            }
+            areAllCheap
+        }
+
+        return filteredStations
+    }
+
+    private fun filterByPetrols(stations: List<GasStation>): List<GasStation> {
+        val stationFilter = FilterState.stationFilter
+        var filteredStations = stations
+
+        if (!stationFilter?.hasPetrol95!! && !stationFilter.hasPetrol98!! && !stationFilter?.hasDieselFuel!! && !stationFilter?.hasNaturalGas!!) {
+            filteredStations = filterByPrices(filteredStations)
+        } else {
+            if (stationFilter?.hasPetrol95!!) {
+                filteredStations = filterByPetrol(filteredStations, "petrol 95")
+            }
+            if (stationFilter.hasPetrol98) {
+                filteredStations = filterByPetrol(filteredStations, "petrol 98")
+            }
+            if (stationFilter.hasNaturalGas) {
+                filteredStations = filterByPetrol(filteredStations, "natural gas")
+            }
+            if (stationFilter.hasDieselFuel) {
+                filteredStations = filterByPetrol(filteredStations, "diesel")
+            }
+        }
+        return filteredStations
+    }
+
+    private fun filterByPetrol(
+        filteredStations: List<GasStation>,
+        fuelName: String
+    ): List<GasStation> {
+        val stationFilter = FilterState.stationFilter
+        return filteredStations.filter {
+            val fuels = it.fuels
+            var found = false
+            for (fuel in fuels) {
+                if (fuel.name?.toLowerCase()
+                        .equals(fuelName) && fuel.price <= stationFilter?.maxPrice!!
+                ) {
+                    found = true
+                }
+            }
+            found
+        }
     }
 
     private fun addGasStations(stations: List<GasStation>) {

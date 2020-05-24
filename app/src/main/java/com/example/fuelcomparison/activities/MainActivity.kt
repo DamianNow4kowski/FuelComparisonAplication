@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -88,6 +89,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         )
         fragmentTransaction = fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
+    }
+
+    fun filterStations(view: View?) {
+        val intent = Intent(this, FilterStationActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish()
     }
 
     private fun displayBasicUserDataInNavView() {

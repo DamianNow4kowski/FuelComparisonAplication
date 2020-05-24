@@ -32,11 +32,16 @@
     <string name="petrol98">Benzyna 98</string>
     <string name="dieselFuel">Diesel</string>
     <string name="naturalGas">Gaz ziemny</string>
+    <string name="favourite">Ulubiona</string>
     <string name="isForDisabledPeople">Udogodnienia dla niepełnosprawnych</string>
     <string name="isForElectricCars">Ładowanie elektrycznych pojazdów</string>
     <string name="availablePetrol">Dostępne rodzaje paliw:</string>
     <string name="facilities">Obiekty:</string>
     <string name="opinions">Wpisz swoją opinię:</string>
+    <string name="filterDistance">Promień wyszukiwania w km:</string>
+    <string name="filterPrice">Maksymalna cena:</string>
+    <string name="filterFuels">Szukane paliwa:</string>
+    <string name="filterSpecial">Specjalne:</string>
     <string name="activeUsers">Aktywni użytkownicy:</string>
     <string name="blockedUsers">Zablokowani użytkownicy:</string>
 
@@ -45,6 +50,7 @@
     <string name="registerButtonText">ZAREJESTRUJ SIĘ</string>
     <string name="addGasStation">DODAJ STACJĘ</string>
     <string name="comment_button">ZATWIERDŹ</string>
+    <string name="stationFilterButtonText">SZUKAJ NAJLEPSZEJ STACJI</string>
     <string name="unlockUserButtonText">ZMIEń STATUS UŻYTKOWNIKA</string>
 
     <!--Toast Messages-->
@@ -100,5 +106,9 @@
     <string name="mapFragmentTag">MAP_FRAGMENT</string>
     <string name="favStationsFragmentTag">FAV_STATIONS_FRAGMENT</string>
     <string name="unlockUsersFragmentTag">UNLOCK_USERS_FRAGMENT</string>
+
+    <!--Filters-->
+    <string name="defaultFuelPrice">5</string>
+    <string name="defaultDistance">10</string>
 
 </resources>

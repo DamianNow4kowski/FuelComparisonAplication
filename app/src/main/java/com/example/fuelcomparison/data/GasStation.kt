@@ -18,6 +18,7 @@ class GasStation : Serializable {
     var hasNaturalGas: Boolean = false
     var isForElectricCars: Boolean = false
     var isForDisabledPeople: Boolean = false
+    var fuels: List<Fuel> = emptyList()
 
     companion object {
         private const val serialVersionUID = -7619773757862241235L
