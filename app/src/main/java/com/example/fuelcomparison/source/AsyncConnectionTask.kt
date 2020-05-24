@@ -87,7 +87,9 @@ class AsyncConnectionTask internal constructor(
         RETRIEVE_FUELS, RETRIEVE_COMMENTS, CONFIRM_STATION, SUBMIT_COMMENT,
         RETRIEVE_FAV_STATIONS,
         TOGGLE_FAVOURITE_STATUS,
-        SAVE_FUEL_PRICE
+        SAVE_FUEL_PRICE,
+        UNLOCK_USER,
+        RETRIEVE_ALL_USERS
     }
 
     companion object {

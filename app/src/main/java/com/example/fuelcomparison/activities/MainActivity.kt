@@ -16,6 +16,7 @@ import com.example.fuelcomparison.data.GasStation
 import com.example.fuelcomparison.enums.IntentKey
 import com.example.fuelcomparison.fragments.FavouriteStationsFragment
 import com.example.fuelcomparison.fragments.MapFragment
+import com.example.fuelcomparison.fragments.UnlockUsersFragment
 import com.example.fuelcomparison.source.AppPreferences
 import com.example.fuelcomparison.source.UserDataHolder
 import com.google.android.material.navigation.NavigationView
@@ -115,6 +116,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         when (itemId) {
             R.id.navMapFragment -> setMapFragment()
             R.id.navFavStations -> setFavouriteStationsFragment()
+            R.id.navUnlockUsersFragment -> setUnlockUsersFragment()
             R.id.navLogout -> logout()
         }
         drawerLayout!!.closeDrawer(Gravity.START)
@@ -127,5 +129,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         finish()
+    }
+
+    private fun setUnlockUsersFragment() {
+        activeFragment = UnlockUsersFragment()
+        var fragmentTransaction: FragmentTransaction
+        fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction = fragmentTransaction.replace(
+            R.id.frameLayout,
+            activeFragment!!,
+            getString(R.string.unlockUsersFragmentTag)
+        )
+        fragmentTransaction = fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 }

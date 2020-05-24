@@ -14,5 +14,11 @@
             android:icon="@drawable/ic_star_24dp"
             android:title="@string/favouriteStations"
             app:actionViewClass="android.widget.TextView" />
+
+        <item
+            android:id="@+id/navUnlockUsersFragment"
+            android:icon="?android:attr/actionModeFindDrawable"
+            android:title="@string/unlockUsers"
+            app:actionViewClass="android.widget.TextView" />
     </group>
 </menu>

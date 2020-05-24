@@ -37,12 +37,15 @@
     <string name="availablePetrol">Dostępne rodzaje paliw:</string>
     <string name="facilities">Obiekty:</string>
     <string name="opinions">Wpisz swoją opinię:</string>
+    <string name="activeUsers">Aktywni użytkownicy:</string>
+    <string name="blockedUsers">Zablokowani użytkownicy:</string>
 
     <!--Buttons Labels-->
     <string name="loginButtonText">ZALOGUJ SIĘ</string>
     <string name="registerButtonText">ZAREJESTRUJ SIĘ</string>
     <string name="addGasStation">DODAJ STACJĘ</string>
     <string name="comment_button">ZATWIERDŹ</string>
+    <string name="unlockUserButtonText">ZMIEń STATUS UŻYTKOWNIKA</string>
 
     <!--Toast Messages-->
     <string name="connectionTimeout">Czas połączenia był zbyt długi.</string>
@@ -64,12 +67,17 @@
     <string name="commentAddedFail">Błąd przy dodawaniu komentarza</string>
     <string name="fuelPriceSaved">Cena paliwa została pomyślnie dodana.</string>
     <string name="fuelPriceSaveError">Błąd przy dodawaniu ceny paliwa</string>
+    <string name="unlockUserDataIncorrect">Niepoprawne dane odblokowywanego użytkownika</string>
+    <string name="userUnlocked">Wybrany użytkownik został odblokowany.</string>
+    <string name="userBlocked">Wybrany użytkownik został zablokowany.</string>
+    <string name="agentId">Agent ID</string>
 
     <!--Navigation Menu-->
     <string name="navigation_drawer_open">Otwieranie nawigacji</string>
     <string name="navigation_drawer_close">Zamykanie nawigacji</string>
     <string name="mapFragment">Mapa</string>
     <string name="favouriteStations">Ulubione stacje</string>
+    <string name="unlockUsers">Zarządzaj dostępem</string>
     <string name="logout">Wyloguj się</string>
 
     <!--URLs-->
@@ -85,9 +93,12 @@
     <string name="addCommentUrl">http://10.0.2.2:8000/addComment</string>
     <string name="retrieveFavouriteStations">http://10.0.2.2:8000/getFavouriteStations</string>
     <string name="toggleGasStationFavourite">http://10.0.2.2:8000/toggleGasStationFavourite</string>
+    <string name="unlockUserUrl">http://10.0.2.2:8000/unlockUser</string>
+    <string name="retrieveAllUsers">http://10.0.2.2:8000/getAllUsers</string>
 
     <!--Tags-->
     <string name="mapFragmentTag">MAP_FRAGMENT</string>
     <string name="favStationsFragmentTag">FAV_STATIONS_FRAGMENT</string>
+    <string name="unlockUsersFragmentTag">UNLOCK_USERS_FRAGMENT</string>
 
 </resources>

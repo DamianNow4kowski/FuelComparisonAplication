@@ -27,4 +27,8 @@ class ResponseStatus {
     object AddGasStation {
         const val DB_INSERT_EXCEPTION = "Error during insert gas station"
     }
+
+    object UnlockUser {
+        const val INCORRECT_DATA = 1
+    }
 }
